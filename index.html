@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atelier Élan Studio — Where Modern Elegance Meets Creative Luxury</title>
+    <!-- Use Playfair Display for Serifs and Poppins for Sans-serif -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Variables and Fonts */
+        :root {
+            --cream: #FFF9F4; /* Light background */
+            --charcoal: #1C1C1C; /* Main text/dark background */
+            --champagne: #D4AF37; /* Accent gold color */
+            --muted: #F4F2F0; /* Muted grey for borders/secondary backgrounds */
+        }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-sans { font-family: 'Poppins', sans-serif; }
+        .bg-cream { background-color: var(--cream); }
+        .text-charcoal { color: var(--charcoal); }
+        .text-champagne { color: var(--champagne); }
+
+        /* Custom button styling for contrast and visibility */
+        .btn-primary {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            font-weight: 600;
+        }
+        .btn-primary-gold {
+            background-color: var(--champagne);
+            color: var(--charcoal);
+            border: 1px solid var(--champagne);
+        }
+        .btn-primary-gold:hover {
+            background-color: var(--charcoal);
+            color: var(--cream);
+        }
+        .btn-secondary-dark {
+            background-color: transparent;
+            color: var(--charcoal);
+            border: 1px solid var(--charcoal);
+        }
+        .btn-secondary-dark:hover {
+            background-color: var(--charcoal);
+            color: var(--cream);
+        }
+
+        /* SPA display logic */
+        .page-content { display: none; }
+        .page-content.active { display: block; }
+
+        /* Mobile Menu */
+        #mobileMenu {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        #mobileMenu.open {
+            max-height: 500px; /* Adjust based on content height */
+            opacity: 1;
+        }
+
+        /* New: Blur effect for header when mobile menu is open */
+        .header-blurry {
+            /* Standard backdrop-filter property */
+            backdrop-filter: blur(8px);
+            /* Fallback/browser-specific property for better compatibility */
+            -webkit-backdrop-filter: blur(8px);
+            /* Ensure the background color has some transparency for the blur to work */
+            background-color: rgba(255, 249, 244, 0.75); /* var(--cream) with 75% opacity */
+        }
+    </style>
+</head>
+
+<body class="bg-cream text-charcoal font-sans antialiased leading-relaxed">
+
+    <!-- Header & Navigation -->
+    <header id="mainHeader" class="sticky top-0 z-50 bg-cream/95 backdrop-blur-sm border-b border-muted transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 max-w-7xl flex items-center justify-between">
+            <a href="#/home" class="font-serif text-2xl font-bold tracking-wider text-charcoal">Atelier Élan Studio</a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-6 lg:space-x-10 text-sm font-medium uppercase tracking-widest">
+                <a class="nav-link hover:text-champagne transition-colors" data-path="home">Home</a>
+                <a class="nav-link hover:text-champagne transition-colors" data-path="about">About</a>
+                <a class="nav-link hover:text-champagne transition-colors" data-path="services">Services</a>
+                <a class="nav-link hover:text-champagne transition-colors" data-path="portfolio">Portfolio</a>
+                <a class="nav-link hover:text-champagne transition-colors" data-path="contact">Contact</a>
+                <a href="#/contact" class="btn-primary btn-primary-gold">Book Now</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden p-2 text-2xl">☰</button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Drawer -->
+    <nav id="mobileMenu" class="md:hidden bg-muted absolute w-full z-40 shadow-xl">
+        <div class="flex flex-col p-6 space-y-4 text-center text-lg font-medium">
+            <a class="mobile-nav-link hover:text-champagne transition-colors" data-path="home">Home</a>
+            <a class="mobile-nav-link hover:text-champagne transition-colors" data-path="about">About</a>
+            <a class="mobile-nav-link hover:text-champagne transition-colors" data-path="services">Services</a>
+            <a class="mobile-nav-link hover:text-champagne transition-colors" data-path="portfolio">Portfolio</a>
+            <a class="mobile-nav-link hover:text-champagne transition-colors" data-path="contact">Contact</a>
+            <a href="#/contact" class="btn-primary btn-primary-gold w-full mt-4">Book Now</a>
+        </div>
+    </nav>
+
+    <!-- Main Content Area (SPA Sections) -->
+    <main class="container mx-auto max-w-7xl px-6 py-12 min-h-[80vh]">
+
+        <!-- HOME SECTION -->
+        <section id="page-home" class="page-content active">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="hero">
+                    <h1 class="font-serif text-5xl md:text-7xl font-light leading-tight">Welcome to <br class="hidden sm:inline">Atelier Élan Studio</h1>
+                    <p class="mt-6 text-xl text-charcoal/80">Luxury creative services in design, branding, and digital styling. We craft brands with intention, elegance, and soul.</p>
+                    <div class="mt-8 flex space-x-4">
+                        <a href="#/services" class="btn-primary btn-primary-gold">Explore Services</a>
+                        <a href="#/portfolio" class="btn-primary btn-secondary-dark">View Portfolio</a>
+                    </div>
+                </div>
+                <!-- Hero Image -->
+                <div class="h-80 md:h-96 bg-muted rounded-xl shadow-2xl overflow-hidden">
+                    <!-- Image 1000262842.webp (uploaded image) is used for the hero banner -->
+                    <img src="https://storage.googleapis.com/assist-asset/uploaded:1000262842.webp-ab71f3e7-25a9-4232-b827-8ef83992b3cf"
+                         alt="Editorial design mockup and luxury objects"
+                         class="w-full h-full object-cover transition-transform duration-500 hover:scale-[1.03]"
+                         onerror="this.onerror=null;this.src='https://placehold.co/1200x900/D4AF37/1C1C1C?text=Creative+Luxury+Design';" />
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="page-about" class="page-content">
+            <h2 class="font-serif text-4xl mb-6 border-b pb-2 border-champagne">About Atelier Élan</h2>
+            <div class="text-lg space-y-4 max-w-4xl">
+                <p>Atelier Élan Studio is a Nairobi-based creative house dedicated to building **timeless, luxury brands**. Our philosophy is simple: makeup is a statement, not a disguise. We exist for those who are ready to embrace their power, own their unique style, and command attention simply by walking into a room.</p>
+                <p>We blend editorial aesthetics with strategic thinking, ensuring your brand not only looks beautiful but also resonates deeply with your ideal audience. We specialize in bringing the art of presence to life across all touchpoints, from refined packaging to sleek digital experiences.</p>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="page-services" class="page-content">
+            <h2 class="font-serif text-4xl mb-6 border-b pb-2 border-champagne">Our Bespoke Services</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service 1: Branding -->
+                <div class="bg-white p-6 rounded-xl shadow-soft border border-muted">
+                    <h3 class="font-serif text-2xl font-medium text-champagne">Brand Identity</h3>
+                    <p class="text-sm mt-2 text-charcoal/70">Full visual systems, logos, guidelines, and brand strategy that embody timeless elegance.</p>
+                    <div class="mt-4">
+                        <a href="#/contact" class="btn-primary btn-primary-gold text-sm">Inquire</a>
+                    </div>
+                </div>
+                <!-- Service 2: Packaging -->
+                <div class="bg-white p-6 rounded-xl shadow-soft border border-muted">
+                    <h3 class="font-serif text-2xl font-medium text-champagne">Product & Packaging Design</h3>
+                    <p class="text-sm mt-2 text-charcoal/70">Luxury-inspired mockups, dielines, and retail packaging that elevates the consumer experience.</p>
+                    <div class="mt-4">
+                        <a href="#/contact" class="btn-primary btn-primary-gold text-sm">Inquire</a>
+                    </div>
+                </div>
+                <!-- Service 3: Digital Strategy -->
+                <div class="bg-white p-6 rounded-xl shadow-soft border border-muted">
+                    <h3 class="font-serif text-2xl font-medium text-champagne">Social Media & Content</h3>
+                    <p class="text-sm mt-2 text-charcoal/70">Strategy and asset creation for high-impact social campaigns and curated feeds.</p>
+                    <div class="mt-4">
+                        <a href="#/contact" class="btn-primary btn-primary-gold text-sm">Inquire</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO SECTION -->
+        <section id="page-portfolio" class="page-content">
+            <h2 class="font-serif text-4xl mb-6 border-b pb-2 border-champagne">Featured Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolioGrid">
+                
+                <!-- Project 1: Opaline Skincare Brand Identity -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-xl border border-muted">
+                    <div class="h-64 overflow-hidden">
+                        <!-- Image 1000262797.png (uploaded image) is used for Opaline Skincare -->
+                        <img src="https://storage.googleapis.com/assist-asset/uploaded:1000262797.png-e62028da-b5fa-4160-9355-ebb55d6496d4"
+                             alt="Opaline Skincare product line and branding"
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             onerror="this.onerror=null;this.src='https://placehold.co/800x600/FFF9F4/D4AF37?text=Opaline+Skincare';" />
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-serif text-xl font-medium">Opaline Skincare</h4>
+                        <p class="text-sm mt-1 text-charcoal/70">Complete Brand Identity & Packaging Design for a luxury minimalist skincare line.</p>
+                        <a href="#/contact" class="btn-primary btn-secondary-dark mt-4 text-xs">View Case Study</a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Élan Parfums Packaging -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-xl border border-muted">
+                    <div class="h-64 overflow-hidden">
+                        <!-- Image 1000262798.png (uploaded image) is used for Elan Parfums -->
+                        <img src="https://storage.googleapis.com/assist-asset/uploaded:1000262798.png-b29f8862-b0cb-4890-b227-b702e81a060d"
+                             alt="Elan Parfums luxury perfume packaging mockup"
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             onerror="this.onerror=null;this.src='https://placehold.co/800x600/1C1C1C/D4AF37?text=Elan+Parfums+Packaging';" />
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-serif text-xl font-medium">Élan Parfums</h4>
+                        <p class="text-sm mt-1 text-charcoal/70">Luxury perfume packaging and brand identity, translating sensory storytelling into design.</p>
+                        <a href="#/contact" class="btn-primary btn-secondary-dark mt-4 text-xs">View Case Study</a>
+                    </div>
+                </div>
+
+                <!-- Project 3: Lustra Beauty Social Media Campaign -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-xl border border-muted">
+                    <div class="h-64 overflow-hidden">
+                        <!-- Image 1000262795.png (uploaded image) is used for Lustra Beauty -->
+                        <img src="https://storage.googleapis.com/assist-asset/uploaded:1000262795.png-5e36ce9a-610a-401e-bc15-958a7f6ed641"
+                             alt="Lustra Beauty social media campaign mockups"
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                             onerror="this.onerror=null;this.src='https://placehold.co/800x600/D4AF37/1C1C1C?text=Lustra+Beauty+Social';" />
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-serif text-xl font-medium">Lustra Beauty</h4>
+                        <p class="text-sm mt-1 text-charcoal/70">"Own the Spotlight" campaign strategy and social content assets for the Icon Collection.</p>
+                        <a href="#/contact" class="btn-primary btn-secondary-dark mt-4 text-xs">View Case Study</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="page-contact" class="page-content">
+            <h2 class="font-serif text-4xl mb-8 border-b pb-2 border-champagne">Let's Discuss Your Project</h2>
+
+            <div class="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-2xl border border-muted">
+                <form id="contactForm" class="space-y-6">
+                    <p class="text-lg font-medium text-center mb-6">Book a discovery call or request a detailed quote.</p>
+                    
+                    <div>
+                        <label for="name" class="block text-sm font-semibold mb-1">Your Name</label>
+                        <input type="text" id="name" name="name" required class="w-full p-3 border border-muted rounded-lg focus:border-champagne focus:ring-1 focus:ring-champagne" placeholder="Hellen Akumu">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-semibold mb-1">Email Address</label>
+                        <input type="email" id="email" name="email" required class="w-full p-3 border border-muted rounded-lg focus:border-champagne focus:ring-1 focus:ring-champagne" placeholder="hello@example.com">
+                    </div>
+
+                    <div>
+                        <label for="projectType" class="block text-sm font-semibold mb-1">Project Type</label>
+                        <select id="projectType" name="projectType" required class="w-full p-3 border border-muted rounded-lg focus:border-champagne focus:ring-1 focus:ring-champagne bg-white">
+                            <option value="">Select a service...</option>
+                            <option value="Brand Identity">Brand Identity & Strategy</option>
+                            <option value="Packaging Design">Packaging & Product Mockups</option>
+                            <option value="Social Media">Social Media Campaign</option>
+                            <option value="Web/UI">Web Design & UX/UI</option>
+                            <option value="Other">Other Creative Request</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-semibold mb-1">Tell us about your vision</label>
+                        <textarea id="message" name="message" rows="5" required class="w-full p-3 border border-muted rounded-lg focus:border-champagne focus:ring-1 focus:ring-champagne" placeholder="We are launching a new luxury product and need a full visual identity..."></textarea>
+                    </div>
+
+                    <div id="formStatus" class="hidden p-3 text-sm rounded-lg"></div>
+
+                    <button type="submit" class="btn-primary btn-primary-gold w-full text-lg">Send Inquiry</button>
+                </form>
+            </div>
+        </section>
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal text-cream py-8 mt-12">
+        <div class="container mx-auto max-w-7xl px-6 text-sm flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <p>&copy; 2025 Atelier Élan Studio | <a href="mailto:atelierelanstudio@gmail.com" class="hover:text-champagne transition-colors">atelierelanstudio@gmail.com</a></p>
+            <div class="flex space-x-4">
+                <a href="#/about" class="hover:text-champagne transition-colors">About</a>
+                <a href="#/portfolio" class="hover:text-champagne transition-colors">Work</a>
+                <a href="#/contact" class="hover:text-champagne transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script for SPA Navigation and Mobile Menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const pages = document.querySelectorAll('.page-content');
+            const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mainHeader = document.getElementById('mainHeader'); // Get the header element
+            const contactForm = document.getElementById('contactForm');
+            const formStatus = document.getElementById('formStatus');
+
+            // --- SPA Logic ---
+            function showPage(path) {
+                const clean = (path || 'home').replace('#/', '').replace('#', '');
+                const pageId = `page-${clean}`;
+
+                pages.forEach(p => p.classList.remove('active'));
+                const el = document.getElementById(pageId);
+                if (el) {
+                    el.classList.add('active');
+                    // Scroll to the top of the main content area
+                    document.querySelector('main').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    document.getElementById('page-home').classList.add('active');
+                }
+
+                // Update active link styling if needed (optional refinement)
+                navLinks.forEach(link => {
+                    link.classList.remove('text-champagne');
+                    if (link.getAttribute('data-path') === clean) {
+                        link.classList.add('text-champagne');
+                    }
+                });
+            }
+
+            // --- Mobile Menu Logic ---
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('open');
+                // Toggle the blur class on the main header
+                if (mobileMenu.classList.contains('open')) {
+                    mainHeader.classList.add('header-blurry');
+                } else {
+                    mainHeader.classList.remove('header-blurry');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const path = link.getAttribute('data-path');
+                    window.location.hash = `#/${path}`;
+                    if (mobileMenu.classList.contains('open')) {
+                        mobileMenu.classList.remove('open');
+                        mainHeader.classList.remove('header-blurry'); // Remove blur when navigating
+                    }
+                    showPage(path);
+                    e.preventDefault();
+                });
+            });
+
+            // --- Hash Change Listener ---
+            window.addEventListener('hashchange', () => {
+                showPage(window.location.hash);
+            });
+
+            // Initial load
+            if (!window.location.hash || window.location.hash === '#/') {
+                window.location.hash = '#/home';
+            } else {
+                showPage(window.location.hash);
+            }
+
+            // --- Contact Form Submission (Demo only, no live send) ---
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                formStatus.classList.remove('hidden', 'bg-red-100', 'text-red-800');
+                formStatus.classList.add('bg-green-100', 'text-green-800');
+                formStatus.textContent = 'Sending inquiry... (Demo Mode)';
+                formStatus.classList.remove('hidden');
+
+                // Simulate API call delay
+                setTimeout(() => {
+                    const name = document.getElementById('name').value;
+                    formStatus.textContent = `Thank you, ${name}! Your inquiry has been received. We will be in touch via email shortly.`;
+                    
+                    // Reset the form
+                    contactForm.reset();
+                }, 1500);
+            });
+            
+        });
+    </script>
+</body>
+</html>
